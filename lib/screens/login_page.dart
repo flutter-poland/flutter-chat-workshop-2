@@ -1,6 +1,9 @@
 import 'dart:math' as math;
+import 'package:chatapp/screens/chat_rooms_page.dart';
+import 'package:chatapp/utils/design_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -32,11 +35,11 @@ class _LoginPageState extends State<LoginPage> {
                 border: InputBorder.none,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(40)
+                  borderRadius: BorderRadius.circular(40),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(40)
+                  borderRadius: BorderRadius.circular(40),
                 ),
                 hintText: 'nickname',
                 filled: true,
@@ -62,7 +65,18 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 color: Colors.lightBlue,
-                onPressed: () {},
+                onPressed: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setString('user', usernameController.text);
+                  await prefs.setString('avatar', userAvatar);
+
+                  Navigator.push<ChatRoomsPage>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatRoomsPage(),
+                    ),
+                  );
+                },
               ),
             )
           ],
