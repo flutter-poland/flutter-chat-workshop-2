@@ -1,3 +1,4 @@
+import 'package:chatapp/models/chat_room_model.dart';
 import 'package:chatapp/widgets/chat_room_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +9,15 @@ class ChatRoomsPage extends StatefulWidget {
 }
 
 class _ChatRoomsPageState extends State<ChatRoomsPage> {
+  final ChatRoomsModel _model = ChatRoomsModel();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _model.fetchChatrooms();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
