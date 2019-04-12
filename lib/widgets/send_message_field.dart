@@ -1,19 +1,23 @@
+import 'package:chatapp/models/messages_model.dart';
 import 'package:chatapp/utils/design_helpers.dart';
 import 'package:chatapp/widgets/send_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageField extends StatefulWidget {
-  const SendMessageField({Key key}) : super(key: key);
+  const SendMessageField({Key key, @required this.model}) : super(key: key);
+
+  final MessagesModel model;
 
   @override
-  State<StatefulWidget> createState() => _SendMessageFieldState();
+  State<StatefulWidget> createState() => _SendMessageFieldState(model);
 }
 
 class _SendMessageFieldState extends State<SendMessageField> {
-  _SendMessageFieldState() : textController = TextEditingController();
+  _SendMessageFieldState(this.model) : textController = TextEditingController();
 
   final TextEditingController textController;
+  final MessagesModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +53,7 @@ class _SendMessageFieldState extends State<SendMessageField> {
       return;
     }
 
+    model.sendMessage(textController.text);
     textController.clear();
   }
 }
