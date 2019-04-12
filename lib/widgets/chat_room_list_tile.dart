@@ -1,11 +1,15 @@
+import 'package:chatapp/models/chat_room.dart';
 import 'package:chatapp/screens/messages_page.dart';
 import 'package:chatapp/widgets/chat_room_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ChatRoomListTile extends StatelessWidget {
-  const ChatRoomListTile({Key key, @required this.index}) : super(key: key);
+  const ChatRoomListTile(
+      {Key key, @required this.chatRoom, @required this.index})
+      : super(key: key);
 
+  final ChatRoom chatRoom;
   final int index;
 
   @override
@@ -32,9 +36,9 @@ class ChatRoomListTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Przykładowy pokój', style: titleStyle),
+                    Text(chatRoom.name, style: titleStyle),
                     Text(
-                      'Przykładowa wiadomośc',
+                      'Ostatnia wiadomość',
                       style: subtitleStyle,
                     ),
                   ],

@@ -47,16 +47,20 @@ class _ChatRoomsPageState extends State<ChatRoomsPage> {
         body: Container(
           child: ScopedModelDescendant<ChatRoomsModel>(
             builder: (_, __, model) {
-              return ListView.separated(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ChatRoomListTile(
-                    index: index,
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Divider();
-                },
+              return RefreshIndicator(
+                child: ListView.separated(
+                  itemCount: model.chatrooms.length,
+                  itemBuilder: (context, index) {
+                    return ChatRoomListTile(
+                      chatRoom: model.chatrooms[index],
+                      index: index,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider();
+                  },
+                ),
+                onRefresh: model.fetchChatrooms,
               );
             },
           ),
