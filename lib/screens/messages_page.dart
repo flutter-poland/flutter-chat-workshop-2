@@ -66,9 +66,13 @@ class _MessagesPageState extends State<MessagesPage> {
                   itemCount: 20,
                   itemBuilder: (context, index) {
                     if (index % 2 == 0)
-                      return MyMessageCell(message: Message());
+                      return MyMessageCell(
+                          message:
+                              Message.fromData('Test message', 'test', null));
                     else
-                      return MessageCell(message: Message());
+                      return MessageCell(
+                          message:
+                              Message.fromData('Test message', 'test', null));
                   },
                 ),
               ),
