@@ -31,6 +31,12 @@ class MessagesModel extends Model {
 
     _messages.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
+    final user = (await SharedPreferences.getInstance()).getString('user');
+
+    for (var message in _messages) {
+      message.setIsMine(message.from == user);
+    }
+
     notifyListeners();
   }
 
