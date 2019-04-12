@@ -9,8 +9,10 @@ class ChatRoomsModel extends Model {
   Future<void> fetchChatrooms() async {
     final docs = await Firestore.instance.collection('rooms').getDocuments();
 
-    _chatrooms =
-        docs.documents.map((doc) => ChatRoom(doc)).toList(growable: false);
+    _chatrooms = docs.documents.map((doc) => ChatRoom(doc)).toList(
+        growable: false)
+      ..sort(
+          (a, b) => a.lastMessage.timestamp.compareTo(b.lastMessage.timestamp));
 
     notifyListeners();
   }

@@ -20,11 +20,13 @@ class Message {
   }
 
   factory Message.fromMap(Map<String, dynamic> map) {
+    final Timestamp timestamp = map['timestamp'];
+
     return Message._new()
       ..id = map['id']
       ..content = map['content']
       ..from = map['from']
-      ..timestamp = map['timestamp'];
+      ..timestamp = timestamp.toDate();
   }
 
   factory Message.fromData(String content, String from, String avatar) {

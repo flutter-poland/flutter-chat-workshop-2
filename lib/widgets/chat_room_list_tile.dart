@@ -38,13 +38,14 @@ class ChatRoomListTile extends StatelessWidget {
                   children: <Widget>[
                     Text(chatRoom.name, style: titleStyle),
                     Text(
-                      'Ostatnia wiadomość',
+                      chatRoom.lastMessage.content,
                       style: subtitleStyle,
                     ),
                   ],
                 ),
               ),
-              trailing: const Text('11:45'),
+              trailing:
+                  Text(_dateFormat.format(chatRoom.lastMessage.timestamp)),
             ),
           ),
         ],
@@ -52,3 +53,5 @@ class ChatRoomListTile extends StatelessWidget {
     );
   }
 }
+
+final DateFormat _dateFormat = DateFormat.Hm();
