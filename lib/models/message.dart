@@ -9,12 +9,14 @@ class Message {
       return null;
     }
 
+    final Timestamp timestamp = doc.data['timestamp'];
+
     return Message._new()
       ..id = doc.documentID
       ..content = doc.data['content']
       ..from = doc.data['from']
       ..avatar = doc.data['avatar']
-      ..timestamp = doc.data['timestamp'];
+      ..timestamp = timestamp.toDate();
   }
 
   factory Message.fromMap(Map<String, dynamic> map) {
@@ -41,7 +43,7 @@ class Message {
   String from;
   String avatar;
   DateTime timestamp;
-  bool mine;
+  bool mine = false;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

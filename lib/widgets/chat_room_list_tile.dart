@@ -27,7 +27,7 @@ class ChatRoomListTile extends StatelessWidget {
                 Navigator.push<MessagesPage>(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MessagesPage(),
+                      builder: (context) => MessagesPage(room: chatRoom),
                     ));
               },
               leading: ChatRoomAvatar(index),

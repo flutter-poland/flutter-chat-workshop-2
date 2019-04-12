@@ -28,7 +28,7 @@ class MessageCell extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-                    child: Text(message.from),
+                    child: Text(message.from ?? ''),
                   ),
                 ],
               ),
